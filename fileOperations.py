@@ -1,4 +1,4 @@
-import ProductClass
+from Product import Product
 
 
 def getUrls():
@@ -14,7 +14,7 @@ def deleteUrl(urlToDelete):
 
 
 def addUrl(urlToAdd):
-    product = ProductClass.Product(urlToAdd)
+    product = Product(urlToAdd)
     if not (product.name and product.price and product.currency and product.url):
         return
     urls = getUrls()
@@ -30,3 +30,25 @@ def writeUrls(urls):
     urlListFile = open("urlList", "w")
     urlListFile.writelines(tempUrls)
     urlListFile.close()
+
+
+def getAllProducts():
+    urls = getUrls()
+    products = []
+    for url in urls:
+        product = Product(url)
+        if product is None: continue
+        products.append(product)
+
+    return products
+
+
+def getAllProductsAsLists():
+    urls = getUrls()
+    products = []
+    for url in urls:
+        product = Product(url)
+        if product is None: continue
+        products.append(product.product2List())
+
+    return products

@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import requests
-import fileOperations
 
 headers = {
         'Access-Control-Allow-Origin': '*',
@@ -33,3 +32,6 @@ class Product:
         self.price = priceF
         self.currency = currency
         self.url = url
+
+    def product2List(self):
+        return [self.name, self.price, self.currency, self.url]
