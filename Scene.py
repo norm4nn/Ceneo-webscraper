@@ -1,8 +1,9 @@
 from abc import ABC, abstractmethod
 
-import fileOperations
+import FileService
 import Table
 import InputElement
+import GUI
 
 
 class AbstractScene(ABC):
@@ -31,8 +32,8 @@ class ListScene(AbstractScene):
     def __init__(self, root):
         super().__init__(root)
 
-        self.addElement(Table.SortingTable(self, fileOperations.getAllProductsAsLists(), ["name", "price", "currency"]))
+        self.addElement(Table.SortingTable(self, FileService.fileService.getAllProductsAsLists(), ["name", "price", "currency"]))
         self.addElement(InputElement.ProductInput(self))
 
     def getInputRow(self):
-        return self.freeRowsOnTop + len(fileOperations.getAllProductsAsLists())
+        return self.freeRowsOnTop + len(FileService.fileService.getAllProductsAsLists())

@@ -3,8 +3,9 @@ import tkmacosx as tkmac
 from abc import ABC, abstractmethod
 
 import SceneElement
-import fileOperations
+import FileService
 from Row import ProductRow
+import GUI
 
 class AbstractSortingTable(SceneElement.AbstractSceneElement):
 
@@ -27,7 +28,6 @@ class AbstractSortingTable(SceneElement.AbstractSceneElement):
         self.buildTable()
 
     def changeSorting(self, newSorting):
-        print(newSorting)
         self.sortByColumnID = newSorting//2
         self.descending = (newSorting)%2
         self.scene.rebuild()
@@ -35,7 +35,7 @@ class AbstractSortingTable(SceneElement.AbstractSceneElement):
 
     def sort(self):
         self.data.sort(key=lambda x: x[self.sortByColumnID], reverse=self.descending)
-        print(self.sortByColumnID,self.descending, self.data)
+
 
     def buildTable(self):
         idLabel = tk.Label(self.scene.root, text="ID")
@@ -73,6 +73,6 @@ class SortingTable(AbstractSortingTable):
 
 
     def reloadData(self):
-        self.data = fileOperations.getAllProductsAsLists()
+        self.data = FileService.fileService.getAllProductsAsLists()
         self.sort()
 

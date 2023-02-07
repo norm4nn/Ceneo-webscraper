@@ -2,7 +2,8 @@ from abc import ABC, abstractmethod
 import tkinter as tk
 import tkmacosx as tkmac
 
-import fileOperations
+import GUI
+import FileService
 
 
 class AbstractRow(ABC):
@@ -25,7 +26,7 @@ class ProductRow(AbstractRow):
 
     def delete(self):
         url = self.data[3]
-        fileOperations.deleteUrl(url)
+        FileService.fileService.deleteUrl(url)
         self.table.scene.rebuild()
 
     def create(self, rowNumber):

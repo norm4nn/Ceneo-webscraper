@@ -1,8 +1,9 @@
 import tkinter as tk
 import tkmacosx as tkmac
 
-import fileOperations
+import FileService
 import SceneElement
+import GUI
 
 
 
@@ -18,5 +19,5 @@ class ProductInput(SceneElement.AbstractSceneElement):
         addButton.grid(row=self.scene.getInputRow(), column=2)
 
     def addRecord(self, url):
-        fileOperations.addUrl(url)
+        FileService.fileService.addUrl(url)
         self.scene.rebuild()
